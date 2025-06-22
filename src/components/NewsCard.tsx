@@ -8,11 +8,15 @@ interface NewsCardProps {
   imageUrl: string;
   category: string;
   date: string;
+  onClick: () => void;
 }
 
-const NewsCard = ({ title, excerpt, imageUrl, category, date }: NewsCardProps) => {
+const NewsCard = ({ title, excerpt, imageUrl, category, date, onClick }: NewsCardProps) => {
   return (
-    <Card className="overflow-hidden bg-navy-light border-navy-lighter card-hover h-full flex flex-col">
+    <Card 
+      className="overflow-hidden bg-navy-light border-navy-lighter card-hover h-full flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105"
+      onClick={onClick}
+    >
       <div className="aspect-video w-full overflow-hidden">
         <img 
           src={imageUrl} 
@@ -27,12 +31,9 @@ const NewsCard = ({ title, excerpt, imageUrl, category, date }: NewsCardProps) =
         </div>
         <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">{title}</h3>
         <p className="text-sm text-gray-300 line-clamp-3 mb-4 flex-grow">{excerpt}</p>
-        <a 
-          href="#" 
-          className="text-primary text-sm font-medium hover:underline self-start mt-auto"
-        >
-          Read More
-        </a>
+        <span className="text-primary text-sm font-medium hover:underline self-start mt-auto">
+          Ler Mais
+        </span>
       </CardContent>
     </Card>
   );

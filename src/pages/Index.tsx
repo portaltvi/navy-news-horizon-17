@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import NewsGrid from '@/components/NewsGrid';
+import NewsModal from '@/components/NewsModal';
 import Footer from '@/components/Footer';
 
 // Mock data for news sections
@@ -87,6 +88,16 @@ const entertainmentNews = [
 ];
 
 const Index = () => {
+  const [isHeroModalOpen, setIsHeroModalOpen] = useState(false);
+
+  const heroNews = {
+    title: "Breakthrough Discovery in Renewable Energy Technology Promises Sustainable Future",
+    content: "Scientists have developed a revolutionary new energy storage system that could make renewable energy sources like solar and wind power more efficient and accessible worldwide.\n\nThis groundbreaking technology represents a major leap forward in our ability to store and distribute clean energy on a massive scale. The new system addresses one of the most significant challenges facing renewable energy adoption: the intermittent nature of solar and wind power.\n\nResearchers at leading universities and technology companies have collaborated on this project for over five years, investing millions of dollars in research and development. The breakthrough came when they discovered a new method for creating ultra-efficient battery cells that can store energy for extended periods without significant degradation.\n\nThe implications of this discovery extend far beyond just energy storage. It could accelerate the global transition to renewable energy, reduce dependence on fossil fuels, and help combat climate change on an unprecedented scale.\n\nIndustry experts predict that this technology could be commercially available within the next three to five years, potentially revolutionizing how we generate, store, and consume energy worldwide.",
+    imageUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2069",
+    category: "Breaking News",
+    date: "Hoje"
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -95,42 +106,53 @@ const Index = () => {
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <section className="mb-12">
-            <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px]">
+            <div 
+              className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              onClick={() => setIsHeroModalOpen(true)}
+            >
               <img 
-                src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2069" 
-                alt="Latest Breaking News" 
+                src={heroNews.imageUrl}
+                alt={heroNews.title}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
                 <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
                   <span className="inline-block bg-primary text-white px-3 py-1 text-sm font-medium rounded-full mb-3">
-                    Breaking News
+                    {heroNews.category}
                   </span>
                   <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-                    Breakthrough Discovery in Renewable Energy Technology Promises Sustainable Future
+                    {heroNews.title}
                   </h1>
                   <p className="text-gray-200 mb-4 line-clamp-3">
                     Scientists have developed a revolutionary new energy storage system that could make renewable energy sources like solar and wind power more efficient and accessible worldwide.
                   </p>
-                  <a 
-                    href="#" 
-                    className="inline-flex items-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded transition-colors"
-                  >
-                    Read Full Story
-                  </a>
+                  <span className="inline-flex items-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded transition-colors">
+                    Ler História Completa
+                  </span>
                 </div>
               </div>
             </div>
           </section>
           
           {/* News Sections */}
-          <NewsGrid title="General News" news={generalNews} />
-          <NewsGrid title="Sports" news={sportsNews} />
-          <NewsGrid title="Entertainment" news={entertainmentNews} />
+          <NewsGrid title="Notícias Gerais" news={generalNews} />
+          <NewsGrid title="Esportes" news={sportsNews} />
+          <NewsGrid title="Entretenimento" news={entertainmentNews} />
         </div>
       </main>
       
       <Footer />
+
+      {/* Hero News Modal */}
+      <NewsModal
+        isOpen={isHeroModalOpen}
+        onClose={() => setIsHeroModalOpen(false)}
+        title={heroNews.title}
+        content={heroNews.content}
+        imageUrl={heroNews.imageUrl}
+        category={heroNews.category}
+        date={heroNews.date}
+      />
     </div>
   );
 };
