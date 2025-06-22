@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import NewsGrid from '@/components/NewsGrid';
+import NewsCardSkeleton from '@/components/NewsCardSkeleton';
 import Footer from '@/components/Footer';
 import { useWordPressPosts } from '@/hooks/useWordPressPosts';
 
@@ -20,10 +21,37 @@ const Index = () => {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow pt-24 flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-white">Carregando notícias...</p>
+        <main className="flex-grow pt-24">
+          <div className="container mx-auto px-4">
+            {/* Hero Section Skeleton */}
+            <section className="mb-12">
+              <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
+                  <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
+                    <div className="w-20 h-6 bg-primary/20 rounded-full mb-3"></div>
+                    <div className="w-full max-w-2xl h-8 bg-white/20 rounded mb-3"></div>
+                    <div className="w-full max-w-xl h-6 bg-white/20 rounded mb-2"></div>
+                    <div className="w-3/4 h-6 bg-white/20 rounded mb-4"></div>
+                    <div className="w-24 h-10 bg-primary/20 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            {/* News Grid Skeleton */}
+            <section className="py-10">
+              <div className="mb-8">
+                <div className="flex items-center justify-between">
+                  <div className="w-48 h-8 bg-white/20 rounded"></div>
+                </div>
+                <div className="mt-4 h-px bg-navy-lighter"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <NewsCardSkeleton key={index} />
+                ))}
+              </div>
+            </section>
           </div>
         </main>
         <Footer />
@@ -32,18 +60,7 @@ const Index = () => {
   }
 
   if (error) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow pt-24 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-white mb-4">Erro ao carregar notícias</h1>
-            <p className="text-gray-300">Tente novamente mais tarde.</p>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+    console.log('Erro ao carregar posts, mas usando dados de placeholder');
   }
 
   const heroNews = posts?.[0];
