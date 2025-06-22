@@ -23,7 +23,7 @@ const Index = () => {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow pt-24">
+        <main className="flex-grow">
           <div className="container mx-auto px-4">
             {/* Hero Section Skeleton */}
             <section className="mb-12">
@@ -34,7 +34,6 @@ const Index = () => {
                     <div className="w-full max-w-2xl h-8 bg-white/20 rounded mb-3"></div>
                     <div className="w-full max-w-xl h-6 bg-white/20 rounded mb-2"></div>
                     <div className="w-3/4 h-6 bg-white/20 rounded mb-4"></div>
-                    <div className="w-24 h-10 bg-primary/20 rounded"></div>
                   </div>
                 </div>
               </div>
@@ -74,11 +73,11 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-grow pt-24">
+      <main className="flex-grow">
         <div className="container mx-auto px-4">
-          {/* Hero Section */}
+          {/* Hero Section - Manchete Central */}
           {heroNews && (
-            <section className="mb-12">
+            <section className="mb-12 mt-8">
               <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={handleHeroClick}>
                 <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
@@ -89,10 +88,9 @@ const Index = () => {
                     <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
                       {heroNews.title}
                     </h1>
-                    <p className="text-gray-200 mb-4 line-clamp-3">
+                    <p className="text-gray-200 line-clamp-3">
                       {heroNews.excerpt}
                     </p>
-                    <span className="inline-flex items-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded transition-colors">Ler mais</span>
                   </div>
                 </div>
               </div>

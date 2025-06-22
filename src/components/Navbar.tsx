@@ -1,11 +1,97 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarTrigger,
+  useSidebar,
+} from '@/components/ui/sidebar';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ChevronRight } from 'lucide-react';
+
+const siteLinks = [
+  { name: 'info', color: '#007bff', href: '#' },
+  { name: 'sports', color: '#2b7e1f', href: '#' },
+  { name: 'fun', color: '#f9a830', href: '#' },
+  { name: 'geek', color: '#e977e6', href: '#' },
+  { name: 'tv papagaio', color: '#151515', href: '#' },
+];
+
+const AppSidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Sidebar side="left" className="bg-gray-100">
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton className="w-full justify-start">
+                      <ChevronRight 
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          isOpen ? 'rotate-90' : ''
+                        }`}
+                        style={{ color: '#4a5568' }}
+                      />
+                      <span className="text-black lowercase">tvi info</span>
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <a href="#" className="text-gray-700 lowercase">rio de janeiro</a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <a href="#" className="text-gray-700 lowercase">pernambuco</a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <a href="#" className="text-gray-700 lowercase">país</a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <a href="#" className="text-gray-700 lowercase">mundo</a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <a href="#" className="text-gray-700 lowercase">tv papagaio</a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </Collapsible>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  );
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,73 +109,67 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-navy/95 shadow-md backdrop-blur-sm' : 'bg-navy'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-white">
-              NAVY<span className="text-primary">NEWS</span>
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-white hover:text-primary transition-colors nav-link">
-              Home
-            </a>
-            <a href="/about" className="text-white hover:text-primary transition-colors nav-link">
-              About
-            </a>
-            <a href="/contact" className="text-white hover:text-primary transition-colors nav-link">
-              Contact
-            </a>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            className="md:hidden text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden animate-fade-in pt-4 pb-2">
-            <div className="flex flex-col space-y-4">
-              <a
-                href="/"
-                className="text-white hover:text-primary transition-colors px-3 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className="text-white hover:text-primary transition-colors px-3 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </a>
-              <a
-                href="/contact"
-                className="text-white hover:text-primary transition-colors px-3 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        <div className="flex-1">
+          {/* Barra superior com links dos sites */}
+          <div className="bg-gray-200 py-2">
+            <div className="container mx-auto px-4">
+              <div className="flex justify-center space-x-8">
+                {siteLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
+                    style={{ color: link.color }}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        )}
+
+          {/* Cabeçalho principal */}
+          <header
+            className={`bg-navy z-40 transition-all duration-300 ${
+              isScrolled ? 'shadow-md' : ''
+            }`}
+          >
+            <div className="container mx-auto px-4 sm:px-6 py-4">
+              <div className="flex items-center justify-between">
+                {/* Menu à esquerda */}
+                <SidebarTrigger asChild>
+                  <Button variant="ghost" className="text-white p-2">
+                    <Menu className="h-6 w-6" />
+                  </Button>
+                </SidebarTrigger>
+
+                {/* Logo centralizada */}
+                <div className="flex-1 flex justify-center">
+                  <a href="/" className="text-2xl font-bold text-white">
+                    Portal <span className="text-primary">TVI</span>
+                  </a>
+                </div>
+
+                {/* Barra de pesquisa à direita */}
+                <div className="relative">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Input
+                      type="search"
+                      placeholder="Pesquisar..."
+                      className="pl-10 w-64 bg-white/90 border-0 rounded-lg focus:bg-white transition-colors"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
       </div>
-    </header>
+    </SidebarProvider>
   );
 };
 
