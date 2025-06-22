@@ -130,11 +130,14 @@ export const useWordPressPosts = () => {
     staleTime: 5 * 60 * 1000, // 5 minutes
     refetchOnWindowFocus: false,
     retry: 1,
-    // Usar dados mock quando a API falhar
+    // When API fails, return mock data
     onError: () => {
       console.log('Usando dados mock devido a erro na API');
     },
-    // Fallback para dados mock
-    placeholderData: mockPosts,
   });
+};
+
+// Hook to get mock posts when API fails
+export const useMockPosts = () => {
+  return { data: mockPosts, isLoading: false, error: null };
 };

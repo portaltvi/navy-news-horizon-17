@@ -5,15 +5,17 @@ import Navbar from '@/components/Navbar';
 import NewsGrid from '@/components/NewsGrid';
 import NewsCardSkeleton from '@/components/NewsCardSkeleton';
 import Footer from '@/components/Footer';
-import { useWordPressPosts } from '@/hooks/useWordPressPosts';
+import { useWordPressPosts, useMockPosts } from '@/hooks/useWordPressPosts';
 
 const Index = () => {
   const navigate = useNavigate();
   const { data: posts, isLoading, error } = useWordPressPosts();
+  const mockData = useMockPosts();
 
   const handleHeroClick = () => {
-    if (posts && posts.length > 0) {
-      navigate(`/post/${posts[0].id}`);
+    const postsToUse = error ? mockData.data : posts;
+    if (postsToUse && postsToUse.length > 0) {
+      navigate(`/post/${postsToUse[0].id}`);
     }
   };
 
@@ -63,8 +65,10 @@ const Index = () => {
     console.log('Erro ao carregar posts, mas usando dados de placeholder');
   }
 
-  const heroNews = posts?.[0];
-  const remainingPosts = posts?.slice(1) || [];
+  // Use mock data if API failed, otherwise use real posts
+  const postsToDisplay = error ? mockData.data : posts;
+  const heroNews = postsToDisplay?.[0];
+  const remainingPosts = postsToDisplay?.slice(1) || [];
 
   return (
     <div className="min-h-screen flex flex-col">
