@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import NewsGrid from '@/components/NewsGrid';
-import NewsModal from '@/components/NewsModal';
 import Footer from '@/components/Footer';
 
 // Mock data for news sections
@@ -88,14 +88,18 @@ const entertainmentNews = [
 ];
 
 const Index = () => {
-  const [isHeroModalOpen, setIsHeroModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const heroNews = {
+    id: 'hero',
     title: "Breakthrough Discovery in Renewable Energy Technology Promises Sustainable Future",
-    content: "Scientists have developed a revolutionary new energy storage system that could make renewable energy sources like solar and wind power more efficient and accessible worldwide.\n\nThis groundbreaking technology represents a major leap forward in our ability to store and distribute clean energy on a massive scale. The new system addresses one of the most significant challenges facing renewable energy adoption: the intermittent nature of solar and wind power.\n\nResearchers at leading universities and technology companies have collaborated on this project for over five years, investing millions of dollars in research and development. The breakthrough came when they discovered a new method for creating ultra-efficient battery cells that can store energy for extended periods without significant degradation.\n\nThe implications of this discovery extend far beyond just energy storage. It could accelerate the global transition to renewable energy, reduce dependence on fossil fuels, and help combat climate change on an unprecedented scale.\n\nIndustry experts predict that this technology could be commercially available within the next three to five years, potentially revolutionizing how we generate, store, and consume energy worldwide.",
     imageUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2069",
     category: "Breaking News",
     date: "Hoje"
+  };
+
+  const handleHeroClick = () => {
+    navigate(`/post/${heroNews.id}`);
   };
 
   return (
@@ -108,7 +112,7 @@ const Index = () => {
           <section className="mb-12">
             <div 
               className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
-              onClick={() => setIsHeroModalOpen(true)}
+              onClick={handleHeroClick}
             >
               <img 
                 src={heroNews.imageUrl}
@@ -142,17 +146,6 @@ const Index = () => {
       </main>
       
       <Footer />
-
-      {/* Hero News Modal */}
-      <NewsModal
-        isOpen={isHeroModalOpen}
-        onClose={() => setIsHeroModalOpen(false)}
-        title={heroNews.title}
-        content={heroNews.content}
-        imageUrl={heroNews.imageUrl}
-        category={heroNews.category}
-        date={heroNews.date}
-      />
     </div>
   );
 };

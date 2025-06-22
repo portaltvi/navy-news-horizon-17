@@ -1,21 +1,28 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface NewsCardProps {
+  id: number | string;
   title: string;
   excerpt: string;
   imageUrl: string;
   category: string;
   date: string;
-  onClick: () => void;
 }
 
-const NewsCard = ({ title, excerpt, imageUrl, category, date, onClick }: NewsCardProps) => {
+const NewsCard = ({ id, title, excerpt, imageUrl, category, date }: NewsCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${id}`);
+  };
+
   return (
     <Card 
       className="overflow-hidden bg-navy-light border-navy-lighter card-hover h-full flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105"
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className="aspect-video w-full overflow-hidden">
         <img 
