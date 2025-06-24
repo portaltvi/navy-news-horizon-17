@@ -21,14 +21,14 @@ const NewsCard = ({ id, title, excerpt, imageUrl, category, date }: NewsCardProp
 
   return (
     <Card 
-      className="overflow-hidden bg-navy-light border-navy-lighter card-hover h-full flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105"
+      className="overflow-hidden bg-navy-light border-navy-lighter h-full flex flex-col cursor-pointer"
       onClick={handleClick}
     >
       <div className="aspect-video w-full overflow-hidden">
         <img 
           src={imageUrl} 
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         />
       </div>
       <CardContent className="p-4 flex flex-col flex-grow">

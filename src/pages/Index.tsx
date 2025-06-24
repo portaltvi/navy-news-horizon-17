@@ -47,8 +47,8 @@ const Index = () => {
                 </div>
                 <div className="mt-4 h-px bg-navy-lighter"></div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Array.from({ length: 6 }).map((_, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, index) => (
                   <NewsCardSkeleton key={index} />
                 ))}
               </div>
@@ -77,7 +77,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           {/* Hero Section - Manchete Central */}
           {heroNews && (
-            <section className="mb-12">
+            <section className="mb-8 mt-2">
               <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={handleHeroClick}>
                 <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
