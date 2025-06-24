@@ -33,7 +33,7 @@ const AppSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Sidebar side="left" className="bg-gray-100">
+    <Sidebar side="left" className="bg-gray-50">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -41,41 +41,41 @@ const AppSidebar = () => {
               <SidebarMenuItem>
                 <Collapsible open={isOpen} onOpenChange={setIsOpen}>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="w-full justify-start">
+                    <SidebarMenuButton className="w-full justify-start text-base">
                       <ChevronRight 
                         className={`h-4 w-4 transition-transform duration-200 ${
                           isOpen ? 'rotate-90' : ''
                         }`}
                         style={{ color: '#4a5568' }}
                       />
-                      <span className="text-black lowercase">tvi info</span>
+                      <span className="text-gray-700 lowercase font-medium">tvi info</span>
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-700 lowercase">rio de janeiro</a>
+                          <a href="#" className="text-gray-600 lowercase text-base">rio de janeiro</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-700 lowercase">pernambuco</a>
+                          <a href="#" className="text-gray-600 lowercase text-base">pernambuco</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-700 lowercase">país</a>
+                          <a href="#" className="text-gray-600 lowercase text-base">país</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-700 lowercase">mundo</a>
+                          <a href="#" className="text-gray-600 lowercase text-base">mundo</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-700 lowercase">tv papagaio</a>
+                          <a href="#" className="text-gray-600 lowercase text-base">tv papagaio</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -109,7 +109,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <div className="flex-1">
@@ -133,20 +133,20 @@ const Navbar = () => {
 
           {/* Cabeçalho principal */}
           <header
-            className={`bg-navy z-40 transition-all duration-300 ${
+            className={`bg-gray-100 z-40 transition-all duration-300 ${
               isScrolled ? 'shadow-md' : ''
             }`}
           >
             <div className="container mx-auto px-4 sm:px-6 py-4">
               <div className="flex items-center justify-between">
                 {/* Menu à esquerda */}
-                <SidebarTrigger className="text-white p-2 hover:bg-white/10 rounded">
+                <SidebarTrigger className="text-gray-700 p-2 hover:bg-gray-200 rounded">
                   <Menu className="h-6 w-6" />
                 </SidebarTrigger>
 
                 {/* Logo centralizada */}
                 <div className="flex-1 flex justify-center">
-                  <a href="/" className="text-2xl font-bold text-white">
+                  <a href="/" className="text-2xl font-bold text-gray-800">
                     Portal <span className="text-primary">TVI</span>
                   </a>
                 </div>
@@ -158,7 +158,7 @@ const Navbar = () => {
                     <Input
                       type="search"
                       placeholder="Pesquisar..."
-                      className="pl-10 w-64 bg-white/90 border-0 rounded-lg focus:bg-white transition-colors"
+                      className="pl-10 w-64 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     />
                   </div>
                 </div>
