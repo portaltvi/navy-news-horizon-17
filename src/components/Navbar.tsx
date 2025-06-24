@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronRight } from 'lucide-react';
+
 const siteLinks = [{
   name: 'info',
   color: '#007bff',
@@ -26,6 +27,7 @@ const siteLinks = [{
   color: '#151515',
   href: '#'
 }];
+
 const AppSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return <Sidebar side="left" className="bg-gray-50">
@@ -80,8 +82,10 @@ const AppSidebar = () => {
       </SidebarContent>
     </Sidebar>;
 };
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -90,24 +94,32 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  return <SidebarProvider defaultOpen={false}>
+
+  return (
+    <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <div className="flex-1 my-0 mx-0 py-0">
           {/* Barra superior com links dos sites */}
-          <div className="bg-gray-200 py-2">
+          <div className="bg-gray-200 py-1">
             <div className="container mx-auto px-4">
               <div className="flex justify-center space-x-8">
-                {siteLinks.map(link => <a key={link.name} href={link.href} className="text-sm font-medium lowercase hover:opacity-80 transition-opacity" style={{
-                color: link.color
-              }}>
+                {siteLinks.map(link => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
+                    style={{ color: link.color }}
+                  >
                     {link.name}
-                  </a>)}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -140,6 +152,8 @@ const Navbar = () => {
           </header>
         </div>
       </div>
-    </SidebarProvider>;
+    </SidebarProvider>
+  );
 };
+
 export default Navbar;
