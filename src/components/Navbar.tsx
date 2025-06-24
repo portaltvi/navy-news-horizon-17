@@ -140,10 +140,8 @@ const Navbar = () => {
             <div className="container mx-auto px-4 sm:px-6 py-4">
               <div className="flex items-center justify-between">
                 {/* Menu à esquerda */}
-                <SidebarTrigger asChild>
-                  <Button variant="ghost" className="text-white p-2">
-                    <Menu className="h-6 w-6" />
-                  </Button>
+                <SidebarTrigger className="text-white p-2 hover:bg-white/10 rounded">
+                  <Menu className="h-6 w-6" />
                 </SidebarTrigger>
 
                 {/* Logo centralizada */}
