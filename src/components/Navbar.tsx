@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -83,7 +84,19 @@ const AppSidebar = () => {
     </Sidebar>;
 };
 
-const Navbar = () => {
+interface NavbarProps {
+  heroNews?: {
+    id: number;
+    title: string;
+    excerpt: string;
+    imageUrl: string;
+    category: string;
+    date: string;
+  };
+  onHeroClick?: () => void;
+}
+
+const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -149,6 +162,28 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Post principal integrado ao cabeçalho */}
+            {heroNews && (
+              <div className="container mx-auto px-4">
+                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={onHeroClick}>
+                  <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
+                    <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
+                      <span className="inline-block bg-primary text-white px-3 py-1 text-sm font-medium rounded-full mb-3">
+                        {heroNews.category}
+                      </span>
+                      <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
+                        {heroNews.title}
+                      </h1>
+                      <p className="text-gray-200 line-clamp-3">
+                        {heroNews.excerpt}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </header>
         </div>
       </div>

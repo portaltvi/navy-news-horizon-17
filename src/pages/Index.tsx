@@ -25,20 +25,6 @@ const Index = () => {
         <Navbar />
         <main className="flex-grow">
           <div className="container mx-auto px-4">
-            {/* Hero Section Skeleton */}
-            <section className="mb-12">
-              <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light">
-                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
-                  <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
-                    <div className="w-20 h-6 bg-primary/20 rounded-full mb-3"></div>
-                    <div className="w-full max-w-2xl h-8 bg-white/20 rounded mb-3"></div>
-                    <div className="w-full max-w-xl h-6 bg-white/20 rounded mb-2"></div>
-                    <div className="w-3/4 h-6 bg-white/20 rounded mb-4"></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
             {/* News Grid Skeleton */}
             <section className="py-10">
               <div className="mb-8">
@@ -71,32 +57,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar heroNews={heroNews} onHeroClick={handleHeroClick} />
       
       <main className="flex-grow">
-        <div className="container mx-auto px-4">
-          {/* Hero Section - Manchete Central */}
-          {heroNews && (
-            <section className="mb-8 mt-2">
-              <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={handleHeroClick}>
-                <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
-                  <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
-                    <span className="inline-block bg-primary text-white px-3 py-1 text-sm font-medium rounded-full mb-3">
-                      {heroNews.category}
-                    </span>
-                    <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-                      {heroNews.title}
-                    </h1>
-                    <p className="text-gray-200 line-clamp-3">
-                      {heroNews.excerpt}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          )}
-          
+        <div className="container mx-auto px-4">          
           {/* News Grid */}
           {remainingPosts.length > 0 && (
             <NewsGrid title="Últimas Notícias" news={remainingPosts} />
