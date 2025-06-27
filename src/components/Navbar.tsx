@@ -168,8 +168,8 @@ const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
           {heroNews && (
             <div className="bg-navy">
               <div className="container mx-auto px-4 py-6">
-                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={onHeroClick}>
-                  <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
+                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer" onClick={onHeroClick}>
+                  <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
                     <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
                       <span className="inline-block bg-primary text-white px-3 py-1 text-sm font-medium rounded-full mb-3">
