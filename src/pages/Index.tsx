@@ -19,13 +19,23 @@ const Index = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <div className="container mx-auto px-4">
-            {/* News Grid Skeleton */}
+  if (error) {
+    console.log('Erro ao carregar posts, mas usando dados de placeholder');
+  }
+
+  // Use mock data if API failed, otherwise use real posts
+  const postsToDisplay = error ? mockData.data : posts;
+  const heroNews = postsToDisplay?.[0];
+  const remainingPosts = postsToDisplay?.slice(1) || [];
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar heroNews={heroNews} onHeroClick={handleHeroClick} isLoading={isLoading} />
+      
+      <main className="flex-grow">
+        <div className="container mx-auto px-4">          
+          {/* News Grid */}
+          {isLoading ? (
             <section className="py-10">
               <div className="mb-8">
                 <div className="flex items-center justify-between">
@@ -39,30 +49,7 @@ const Index = () => {
                 ))}
               </div>
             </section>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (error) {
-    console.log('Erro ao carregar posts, mas usando dados de placeholder');
-  }
-
-  // Use mock data if API failed, otherwise use real posts
-  const postsToDisplay = error ? mockData.data : posts;
-  const heroNews = postsToDisplay?.[0];
-  const remainingPosts = postsToDisplay?.slice(1) || [];
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar heroNews={heroNews} onHeroClick={handleHeroClick} />
-      
-      <main className="flex-grow">
-        <div className="container mx-auto px-4">          
-          {/* News Grid */}
-          {remainingPosts.length > 0 && (
+          ) : remainingPosts.length > 0 && (
             <NewsGrid title="Últimas Notícias" news={remainingPosts} />
           )}
         </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronRight } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const siteLinks = [{
   name: 'info',
@@ -94,9 +94,10 @@ interface NavbarProps {
     date: string;
   };
   onHeroClick?: () => void;
+  isLoading?: boolean;
 }
 
-const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
+const Navbar = ({ heroNews, onHeroClick, isLoading }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -165,9 +166,25 @@ const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
           </header>
           
           {/* Post principal com fundo azul */}
-          {heroNews && (
-            <div className="bg-navy">
-              <div className="container mx-auto px-4 py-6">
+          <div className="bg-navy">
+            <div className="container mx-auto px-4 py-6">
+              {isLoading ? (
+                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light border-navy-lighter">
+                  <Skeleton className="w-full h-full" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
+                    <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
+                      <Skeleton className="h-6 w-20 mb-3 rounded-full" />
+                      <Skeleton className="h-8 md:h-10 w-full md:w-3/4 mb-3" />
+                      <Skeleton className="h-8 md:h-10 w-full md:w-1/2 mb-3" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-2/3" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : heroNews ? (
                 <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer" onClick={onHeroClick}>
                   <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
@@ -184,9 +201,9 @@ const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : null}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </SidebarProvider>
