@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -158,7 +159,11 @@ const Navbar = ({ heroNews, onHeroClick, isLoading }: NavbarProps) => {
                 <div className="relative">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Input type="search" placeholder="Pesquisar..." className="pl-10 w-64 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors" />
+                    <Input 
+                      type="search" 
+                      placeholder="Pesquisar..." 
+                      className="pl-10 w-64 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-black placeholder:text-gray-400" 
+                    />
                   </div>
                 </div>
               </div>
