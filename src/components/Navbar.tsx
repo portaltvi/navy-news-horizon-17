@@ -162,10 +162,12 @@ const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
                 </div>
               </div>
             </div>
-            
-            {/* Post principal integrado ao cabeçalho */}
-            {heroNews && (
-              <div className="container mx-auto px-4">
+          </header>
+          
+          {/* Post principal com fundo azul */}
+          {heroNews && (
+            <div className="bg-navy">
+              <div className="container mx-auto px-4 py-6">
                 <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer transition-transform duration-300 hover:scale-[1.02]" onClick={onHeroClick}>
                   <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
@@ -183,8 +185,8 @@ const Navbar = ({ heroNews, onHeroClick }: NavbarProps) => {
                   </div>
                 </div>
               </div>
-            )}
-          </header>
+            </div>
+          )}
         </div>
       </div>
     </SidebarProvider>
