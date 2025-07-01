@@ -1,88 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, ArrowLeft, Facebook, Twitter, Link2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronRight } from 'lucide-react';
-import { Skeleton } from '@/components/ui/skeleton';
-
-const siteLinks = [{
-  name: 'info',
-  color: '#007bff',
-  href: '#'
-}, {
-  name: 'sports',
-  color: '#2b7e1f',
-  href: '#'
-}, {
-  name: 'fun',
-  color: '#f9a830',
-  href: '#'
-}, {
-  name: 'geek',
-  color: '#e977e6',
-  href: '#'
-}, {
-  name: 'tv papagaio',
-  color: '#151515',
-  href: '#'
-}];
-
-const AppSidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  return <Sidebar side="left" className="bg-gray-50">
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="w-full justify-start text-base">
-                      <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`} style={{
-                      color: '#4a5568'
-                    }} />
-                      <span className="text-gray-700 lowercase font-medium">tvi info</span>
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-600 lowercase text-base">rio de janeiro</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-600 lowercase text-base">pernambuco</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-600 lowercase text-base">país</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-600 lowercase text-base">mundo</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#" className="text-gray-600 lowercase text-base">tv papagaio</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </Collapsible>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>;
-};
+import { SidebarProvider } from '@/components/ui/sidebar';
+import SiteLinksBar from '@/components/navigation/SiteLinksBar';
+import MainHeader from '@/components/navigation/MainHeader';
+import AppSidebar from '@/components/navigation/AppSidebar';
+import NavbarContent from '@/components/navigation/NavbarContent';
 
 interface PostData {
   title: string;
@@ -144,173 +66,17 @@ const Navbar = ({
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <div className="flex-1 my-0 mx-0 py-0">
-          {/* Barra superior com links dos sites */}
-          <div className="bg-gray-200 py-1">
-            <div className="container mx-auto px-4">
-              <div className="flex justify-center space-x-8">
-                {siteLinks.map(link => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
-                    style={{ color: link.color }}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Cabeçalho principal */}
-          <header className={`bg-gray-100 z-40 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
-            <div className="container mx-auto px-4 sm:px-6 py-4">
-              <div className="flex items-center justify-between">
-                {/* Menu à esquerda */}
-                <SidebarTrigger className="text-gray-700 p-2 hover:bg-gray-200 rounded">
-                  <Menu className="h-6 w-6" />
-                </SidebarTrigger>
-
-                {/* Logo centralizada */}
-                <div className="flex-1 flex justify-center">
-                  <a href="/" className="text-2xl font-bold text-gray-800">
-                    Portal <span className="text-primary">TVI</span>
-                  </a>
-                </div>
-
-                {/* Barra de pesquisa à direita */}
-                <div className="relative">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Input 
-                      type="search" 
-                      placeholder="Pesquisar..." 
-                      className="pl-10 w-64 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors text-black placeholder:text-gray-400" 
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          {/* Conteúdo com fundo azul */}
-          <div className="bg-navy">
-            <div className="container mx-auto px-4 py-6">
-              {/* Botão de voltar para posts */}
-              {showBackButton && onBackClick && (
-                <button 
-                  onClick={onBackClick}
-                  className="flex items-center text-white hover:text-white/80 mb-6 transition-colors"
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Voltar
-                </button>
-              )}
-
-              {/* Error state para posts */}
-              {errorMessage && (
-                <div className="text-center">
-                  <h1 className="text-2xl font-bold text-white mb-4">{errorMessage}</h1>
-                </div>
-              )}
-
-              {/* Conteúdo do post */}
-              {postData && (
-                <article className="max-w-4xl mx-auto">
-                  <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-                    <img 
-                      src={postData.imageUrl} 
-                      alt={postData.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Botões de compartilhamento */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-sm text-gray-200 mr-2">Compartilhar:</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => postData.onShare('facebook')}
-                      className="text-white border-white hover:bg-white hover:text-navy"
-                    >
-                      <Facebook className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => postData.onShare('twitter')}
-                      className="text-white border-white hover:bg-white hover:text-navy"
-                    >
-                      <Twitter className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => postData.onShare('copy')}
-                      className="text-white border-white hover:bg-white hover:text-navy"
-                    >
-                      <Link2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  {/* Informações do autor e categoria */}
-                  <div className="text-xs text-gray-200 mb-4">
-                    <span className="uppercase font-medium text-white">{postData.category}</span> | De: {postData.author}
-                    <br />
-                    Atualizado em: {postData.modifiedDate}, {postData.modifiedTime}
-                  </div>
-                  
-                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                    {postData.title}
-                  </h1>
-                  
-                  <div className="prose prose-gray max-w-none">
-                    <div 
-                      className="text-gray-100 leading-relaxed text-lg"
-                      dangerouslySetInnerHTML={{ __html: postData.content }}
-                    />
-                  </div>
-                </article>
-              )}
-
-              {/* Hero news para página inicial */}
-              {isLoading && heroNews === undefined ? (
-                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light border-navy-lighter">
-                  <Skeleton className="w-full h-full" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
-                    <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
-                      <Skeleton className="h-6 w-20 mb-3 rounded-full" />
-                      <Skeleton className="h-8 md:h-10 w-full md:w-3/4 mb-3" />
-                      <Skeleton className="h-8 md:h-10 w-full md:w-1/2 mb-3" />
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-full" />
-                        <Skeleton className="h-4 w-full" />
-                        <Skeleton className="h-4 w-2/3" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : heroNews ? (
-                <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer" onClick={onHeroClick}>
-                  <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
-                    <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
-                      <span className="inline-block bg-primary text-white px-3 py-1 text-sm font-medium rounded-full mb-3">
-                        {heroNews.category}
-                      </span>
-                      <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-                        {heroNews.title}
-                      </h1>
-                      <p className="text-gray-200 line-clamp-3">
-                        {heroNews.excerpt}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </div>
+          <SiteLinksBar />
+          <MainHeader isScrolled={isScrolled} />
+          <NavbarContent 
+            heroNews={heroNews}
+            onHeroClick={onHeroClick}
+            isLoading={isLoading}
+            showBackButton={showBackButton}
+            onBackClick={onBackClick}
+            postData={postData}
+            errorMessage={errorMessage}
+          />
         </div>
       </div>
     </SidebarProvider>
