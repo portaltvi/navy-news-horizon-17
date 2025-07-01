@@ -70,14 +70,11 @@ const PostPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
-        <div className="bg-gray-100">
-          <div className="container mx-auto px-4 py-8">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-gray-700 text-lg">Carregando post...</p>
-            </div>
-          </div>
-        </div>
+        <Navbar 
+          isLoading={true}
+          showBackButton={true}
+          onBackClick={() => navigate('/')}
+        />
         <Footer />
       </div>
     );
@@ -86,19 +83,12 @@ const PostPage = () => {
   if (error || !post) {
     return (
       <div className="min-h-screen flex flex-col">
-        <div className="bg-gray-100">
-          <div className="container mx-auto px-4 py-8">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold text-gray-700 mb-4">Post não encontrado</h1>
-              <button 
-                onClick={() => navigate('/')}
-                className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded transition-colors"
-              >
-                Voltar ao Início
-              </button>
-            </div>
-          </div>
-        </div>
+        <Navbar 
+          isLoading={false}
+          showBackButton={true}
+          onBackClick={() => navigate('/')}
+          errorMessage="Post não encontrado"
+        />
         <Footer />
       </div>
     );
@@ -131,77 +121,25 @@ const PostPage = () => {
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
     .replace(/&nbsp;/g, ' ');
 
+  const postData = {
+    title: post.title.rendered,
+    content: cleanContent,
+    imageUrl,
+    category,
+    author,
+    date,
+    modifiedDate,
+    modifiedTime,
+    onShare: handleShare
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="bg-gray-100">
-        <div className="container mx-auto px-4 py-8">
-          <button 
-            onClick={() => navigate('/')}
-            className="flex items-center text-primary hover:text-primary/80 mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar
-          </button>
-          
-          <article className="max-w-4xl mx-auto">
-            <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-              <img 
-                src={imageUrl} 
-                alt={post.title.rendered}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Botões de compartilhamento */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-sm text-gray-400 mr-2">Compartilhar:</span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('facebook')}
-                className="text-gray-600 hover:text-blue-600"
-              >
-                <Facebook className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('twitter')}
-                className="text-gray-600 hover:text-blue-400"
-              >
-                <Twitter className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('copy')}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <Link2 className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            {/* Informações do autor e categoria */}
-            <div className="text-xs text-gray-400 mb-4">
-              <span className="uppercase font-medium text-primary">{category}</span> | De: {author}
-              <br />
-              Atualizado em: {modifiedDate}, {modifiedTime}
-            </div>
-            
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
-              {post.title.rendered}
-            </h1>
-            
-            <div className="prose prose-gray max-w-none">
-              <div 
-                className="text-gray-700 leading-relaxed text-lg"
-                dangerouslySetInnerHTML={{ __html: cleanContent }}
-              />
-            </div>
-          </article>
-        </div>
-      </div>
-      
+      <Navbar 
+        showBackButton={true}
+        onBackClick={() => navigate('/')}
+        postData={postData}
+      />
       <Footer />
     </div>
   );
