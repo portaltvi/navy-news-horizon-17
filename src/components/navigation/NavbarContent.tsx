@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { ArrowLeft, Facebook, Twitter, Link2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-
 interface PostData {
   title: string;
   content: string;
@@ -15,7 +13,6 @@ interface PostData {
   modifiedTime: string;
   onShare: (platform: string) => void;
 }
-
 interface HeroNews {
   id: number;
   title: string;
@@ -24,7 +21,6 @@ interface HeroNews {
   category: string;
   date: string;
 }
-
 interface NavbarContentProps {
   heroNews?: HeroNews;
   onHeroClick?: () => void;
@@ -34,80 +30,51 @@ interface NavbarContentProps {
   postData?: PostData;
   errorMessage?: string;
 }
-
-const NavbarContent = ({ 
-  heroNews, 
-  onHeroClick, 
-  isLoading, 
-  showBackButton = false, 
-  onBackClick, 
+const NavbarContent = ({
+  heroNews,
+  onHeroClick,
+  isLoading,
+  showBackButton = false,
+  onBackClick,
   postData,
-  errorMessage 
+  errorMessage
 }: NavbarContentProps) => {
-  return (
-    <div className="bg-navy">
+  return <div className="bg-navy">
       <div className="container mx-auto px-4 py-6">
         {/* Botão de voltar para posts */}
-        {showBackButton && onBackClick && (
-          <button 
-            onClick={onBackClick}
-            className="flex items-center text-white hover:text-white/80 mb-6 transition-colors"
-          >
+        {showBackButton && onBackClick && <button onClick={onBackClick} className="flex items-center text-white hover:text-white/80 mb-6 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
-          </button>
-        )}
+          </button>}
 
         {/* Error state para posts */}
-        {errorMessage && (
-          <div className="text-center">
+        {errorMessage && <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">{errorMessage}</h1>
-          </div>
-        )}
+          </div>}
 
         {/* Conteúdo do post */}
-        {postData && (
-          <article className="max-w-4xl mx-auto">
+        {postData && <article className="max-w-4xl mx-auto">
             <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-              <img 
-                src={postData.imageUrl} 
-                alt={postData.title}
-                className="w-full h-full object-cover"
-              />
+              <img src={postData.imageUrl} alt={postData.title} className="w-full h-full object-cover" />
             </div>
 
             {/* Botões de compartilhamento */}
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-sm text-gray-200 mr-2">Compartilhar:</span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => postData.onShare('facebook')}
-                className="text-white border-white hover:bg-white hover:text-navy"
-              >
+              <span className="text-sm mr-2 text-slate-200">Compartilhar:</span>
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('facebook')} className="border-white bg-navy-DEFAULT text-slate-200">
                 <Facebook className="w-4 h-4" />
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => postData.onShare('twitter')}
-                className="text-white border-white hover:bg-white hover:text-navy"
-              >
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('twitter')} className="border-white bg-navy-DEFAULT text-slate-200">
                 <Twitter className="w-4 h-4" />
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => postData.onShare('copy')}
-                className="text-white border-white hover:bg-white hover:text-navy"
-              >
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('copy')} className="text-white border-white hover:bg-white hover:text-navy">
                 <Link2 className="w-4 h-4" />
               </Button>
             </div>
             
             {/* Informações do autor e categoria */}
             <div className="text-xs text-gray-200 mb-4">
-              <span className="uppercase font-medium text-white">{postData.category}</span> | De: {postData.author}
+              <span className="uppercase font-medium text-blue-500">{postData.category}</span> | De: {postData.author}
               <br />
               Atualizado em: {postData.modifiedDate}, {postData.modifiedTime}
             </div>
@@ -117,17 +84,14 @@ const NavbarContent = ({
             </h1>
             
             <div className="prose prose-gray max-w-none">
-              <div 
-                className="text-gray-100 leading-relaxed text-lg"
-                dangerouslySetInnerHTML={{ __html: postData.content }}
-              />
+              <div className="text-gray-100 leading-relaxed text-lg" dangerouslySetInnerHTML={{
+            __html: postData.content
+          }} />
             </div>
-          </article>
-        )}
+          </article>}
 
         {/* Hero news para página inicial */}
-        {isLoading && heroNews === undefined ? (
-          <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light border-navy-lighter">
+        {isLoading && heroNews === undefined ? <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] bg-navy-light border-navy-lighter">
             <Skeleton className="w-full h-full" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
               <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
@@ -141,9 +105,7 @@ const NavbarContent = ({
                 </div>
               </div>
             </div>
-          </div>
-        ) : heroNews ? (
-          <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer" onClick={onHeroClick}>
+          </div> : heroNews ? <div className="relative rounded-lg overflow-hidden h-[400px] md:h-[500px] cursor-pointer" onClick={onHeroClick}>
             <img src={heroNews.imageUrl} alt={heroNews.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent">
               <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:max-w-3xl">
@@ -158,11 +120,8 @@ const NavbarContent = ({
                 </p>
               </div>
             </div>
-          </div>
-        ) : null}
+          </div> : null}
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default NavbarContent;
