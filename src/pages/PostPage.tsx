@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Share2, Facebook, Twitter, Link2 } from 'lucide-react';
@@ -71,7 +70,7 @@ const PostPage = () => {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow flex items-center justify-center mt-6 mb-6">
+        <main className="flex-grow container mx-auto px-4 py-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-white text-lg">Carregando post...</p>
@@ -86,7 +85,7 @@ const PostPage = () => {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow flex items-center justify-center mt-6 mb-6">
+        <main className="flex-grow container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Post não encontrado</h1>
             <button 
@@ -133,73 +132,71 @@ const PostPage = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-grow mt-6 mb-6">
-        <div className="container mx-auto px-4 py-8">
-          <button 
-            onClick={() => navigate('/')}
-            className="flex items-center text-primary hover:text-primary/80 mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar
-          </button>
-          
-          <article className="max-w-4xl mx-auto">
-            <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-              <img 
-                src={imageUrl} 
-                alt={post.title.rendered}
-                className="w-full h-full object-cover"
-              />
-            </div>
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <button 
+          onClick={() => navigate('/')}
+          className="flex items-center text-primary hover:text-primary/80 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Voltar
+        </button>
+        
+        <article className="max-w-4xl mx-auto">
+          <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
+            <img 
+              src={imageUrl} 
+              alt={post.title.rendered}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-            {/* Botões de compartilhamento */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-sm text-gray-400 mr-2">Compartilhar:</span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('facebook')}
-                className="text-gray-600 hover:text-blue-600"
-              >
-                <Facebook className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('twitter')}
-                className="text-gray-600 hover:text-blue-400"
-              >
-                <Twitter className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('copy')}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <Link2 className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            {/* Informações do autor e categoria */}
-            <div className="text-xs text-gray-400 mb-4">
-              <span className="uppercase font-medium text-primary">{category}</span> | De: {author}
-              <br />
-              Atualizado em: {modifiedDate}, {modifiedTime}
-            </div>
-            
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-              {post.title.rendered}
-            </h1>
-            
-            <div className="prose prose-invert max-w-none">
-              <div 
-                className="text-gray-300 leading-relaxed text-lg"
-                dangerouslySetInnerHTML={{ __html: cleanContent }}
-              />
-            </div>
-          </article>
-        </div>
+          {/* Botões de compartilhamento */}
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-sm text-gray-400 mr-2">Compartilhar:</span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('facebook')}
+              className="text-gray-600 hover:text-blue-600"
+            >
+              <Facebook className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('twitter')}
+              className="text-gray-600 hover:text-blue-400"
+            >
+              <Twitter className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('copy')}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              <Link2 className="w-4 h-4" />
+            </Button>
+          </div>
+          
+          {/* Informações do autor e categoria */}
+          <div className="text-xs text-gray-400 mb-4">
+            <span className="uppercase font-medium text-primary">{category}</span> | De: {author}
+            <br />
+            Atualizado em: {modifiedDate}, {modifiedTime}
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+            {post.title.rendered}
+          </h1>
+          
+          <div className="prose prose-invert max-w-none">
+            <div 
+              className="text-gray-300 leading-relaxed text-lg"
+              dangerouslySetInnerHTML={{ __html: cleanContent }}
+            />
+          </div>
+        </article>
       </main>
       
       <Footer />
