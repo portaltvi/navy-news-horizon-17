@@ -207,14 +207,6 @@ const Navbar = ({
                 </button>
               )}
 
-              {/* Loading state para posts */}
-              {isLoading && !heroNews && (
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-                  <p className="text-white text-lg">Carregando post...</p>
-                </div>
-              )}
-
               {/* Error state para posts */}
               {errorMessage && (
                 <div className="text-center">
