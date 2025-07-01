@@ -61,13 +61,13 @@ const NavbarContent = ({
             {/* Botões de compartilhamento */}
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm mr-2 text-slate-200">Compartilhar:</span>
-              <Button variant="outline" size="sm" onClick={() => postData.onShare('facebook')} className="border-white bg-navy-DEFAULT text-slate-200">
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('facebook')} className="border-white bg-navy-DEFAULT text-slate-200 font-normal">
                 <Facebook className="w-4 h-4" />
               </Button>
-              <Button variant="outline" size="sm" onClick={() => postData.onShare('twitter')} className="border-white bg-navy-DEFAULT text-slate-200">
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('twitter')} className="border-white bg-navy-DEFAULT text-slate-200 font-normal">
                 <Twitter className="w-4 h-4" />
               </Button>
-              <Button variant="outline" size="sm" onClick={() => postData.onShare('copy')} className="text-white border-white hover:bg-white hover:text-navy">
+              <Button variant="outline" size="sm" onClick={() => postData.onShare('copy')} className="border-white bg-navy-DEFAULT text-slate-200 font-normal">
                 <Link2 className="w-4 h-4" />
               </Button>
             </div>
