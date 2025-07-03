@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import NewsletterSignup from './NewsletterSignup';
-
 const Footer = () => {
-  return (
-    <footer className="bg-navy-light mt-10">
+  return <footer className="bg-navy-light mt-10">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -58,9 +55,7 @@ const Footer = () => {
         <Separator className="my-8 bg-navy-lighter" />
         
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2023 NavyNews. All rights reserved.
-          </p>
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">© - Rede TVI</p>
           
           <div className="flex space-x-4">
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
@@ -82,8 +77,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
