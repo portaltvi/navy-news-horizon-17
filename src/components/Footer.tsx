@@ -1,9 +1,12 @@
+
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import NewsletterSignup from './NewsletterSignup';
+
 const Footer = () => {
-  return <footer className="bg-navy-light mt-10">
+  return (
+    <footer className="bg-navy-light mt-10">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -17,34 +20,34 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-gray-300 hover:text-primary transition-colors">Home</a>
+                <a href="/about" className="text-gray-300 hover:text-primary transition-colors">Sobre nós</a>
               </li>
               <li>
-                <a href="/about" className="text-gray-300 hover:text-primary transition-colors">About</a>
+                <a href="/contact" className="text-gray-300 hover:text-primary transition-colors">Entre em contato</a>
               </li>
               <li>
-                <a href="/contact" className="text-gray-300 hover:text-primary transition-colors">Contact</a>
+                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Política de privacidade</a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Termos de uso</a>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Categories</h4>
+            <h4 className="text-lg font-semibold text-white mb-4">Categorias</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">General News</a>
+                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Info</a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-primary transition-colors">Sports</a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Entertainment</a>
+                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Fun</a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Technology</a>
+                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Geek</a>
               </li>
             </ul>
           </div>
@@ -71,12 +74,14 @@ const Footer = () => {
               <span className="sr-only">Instagram</span>
             </a>
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-              
+              <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </a>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

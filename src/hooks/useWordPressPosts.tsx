@@ -1,3 +1,4 @@
+
 import { useQuery } from '@tanstack/react-query';
 
 interface WordPressPost {
@@ -34,7 +35,7 @@ interface TransformedPost {
   date: string;
 }
 
-// Mock data como fallback
+// Mock data como fallback - limitado a 8 posts
 const mockPosts: TransformedPost[] = [
   {
     id: 1,
@@ -42,7 +43,7 @@ const mockPosts: TransformedPost[] = [
     excerpt: "Acompanhe as principais notícias e acontecimentos que estão movimentando o cenário atual.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     imageUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2069",
-    category: "Notícias",
+    category: "Info",
     date: "22 de junho de 2025"
   },
   {
@@ -51,7 +52,7 @@ const mockPosts: TransformedPost[] = [
     excerpt: "As principais inovações tecnológicas que estão transformando o mundo dos negócios.",
     content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070",
-    category: "Tecnologia",
+    category: "Geek",
     date: "21 de junho de 2025"
   },
   {
@@ -60,7 +61,7 @@ const mockPosts: TransformedPost[] = [
     excerpt: "Análise completa dos principais indicadores econômicos e tendências do mercado.",
     content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.",
     imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070",
-    category: "Economia",
+    category: "Info",
     date: "20 de junho de 2025"
   },
   {
@@ -69,14 +70,50 @@ const mockPosts: TransformedPost[] = [
     excerpt: "Cobertura completa dos principais eventos esportivos e resultados mais recentes.",
     content: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.",
     imageUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070",
-    category: "Esportes",
+    category: "Sports",
     date: "19 de junho de 2025"
+  },
+  {
+    id: 5,
+    title: "Entretenimento e Cinema",
+    excerpt: "As últimas novidades do mundo do entretenimento e lançamentos cinematográficos.",
+    content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+    imageUrl: "https://images.unsplash.com/photo-1489599804783-d6b8d9e3ce41?q=80&w=2070",
+    category: "Fun",
+    date: "18 de junho de 2025"
+  },
+  {
+    id: 6,
+    title: "Inovações Tecnológicas",
+    excerpt: "Descubra as mais recentes inovações que estão mudando o futuro da tecnologia.",
+    content: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
+    category: "Geek",
+    date: "17 de junho de 2025"
+  },
+  {
+    id: 7,
+    title: "Campeonatos Esportivos",
+    excerpt: "Resumo dos principais campeonatos e competições esportivas da semana.",
+    content: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070",
+    category: "Sports",
+    date: "16 de junho de 2025"
+  },
+  {
+    id: 8,
+    title: "Eventos e Festivais",
+    excerpt: "Os melhores eventos culturais e festivais que acontecem neste mês.",
+    content: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.",
+    imageUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070",
+    category: "Fun",
+    date: "15 de junho de 2025"
   }
 ];
 
 const fetchWordPressPosts = async (): Promise<WordPressPost[]> => {
   try {
-    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=20');
+    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=8');
     if (!response.ok) {
       throw new Error('Failed to fetch posts');
     }
