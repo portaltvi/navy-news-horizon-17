@@ -25,43 +25,19 @@ const siteLinks = [{
 
 const SiteLinksBar = () => {
   return (
-    <div className="bg-gray-200 py-3">
+    <div className="bg-gray-200 py-1">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Links da esquerda */}
-          <div className="flex space-x-6">
-            {siteLinks.slice(0, 2).map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
-                style={{ color: link.color }}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Logo centralizado */}
-          <div className="flex-1 flex justify-center">
-            <a href="/" className="text-2xl font-bold text-gray-800">
-              Portal <span className="text-primary">TVI</span>
+        <div className="flex justify-center space-x-8">
+          {siteLinks.map(link => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
+              style={{ color: link.color }}
+            >
+              {link.name}
             </a>
-          </div>
-
-          {/* Links da direita */}
-          <div className="flex space-x-6">
-            {siteLinks.slice(2).map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
-                style={{ color: link.color }}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </div>

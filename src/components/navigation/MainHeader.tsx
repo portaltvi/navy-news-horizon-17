@@ -18,8 +18,12 @@ const MainHeader = ({ isScrolled }: MainHeaderProps) => {
             <Menu className="h-6 w-6" />
           </SidebarTrigger>
 
-          {/* Espaço flexível no centro */}
-          <div className="flex-1"></div>
+          {/* Logo centralizada */}
+          <div className="flex-1 flex justify-center">
+            <a href="/" className="text-2xl font-bold text-gray-800">
+              Portal <span className="text-primary">TVI</span>
+            </a>
+          </div>
 
           {/* Barra de pesquisa à direita */}
           <div className="relative">
