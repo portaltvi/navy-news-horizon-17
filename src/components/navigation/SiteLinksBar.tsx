@@ -32,7 +32,7 @@ const SiteLinksBar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium lowercase hover:opacity-80 transition-opacity"
+              className="text-xs sm:text-sm font-medium lowercase hover:opacity-80 transition-opacity"
               style={{ color: link.color }}
             >
               {link.name}
