@@ -14,12 +14,14 @@ const MainHeader = ({ isScrolled }: MainHeaderProps) => {
       <div className="container mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Menu à esquerda */}
-          <SidebarTrigger className="text-gray-700 p-2 hover:bg-gray-200 rounded">
-            <Menu className="h-6 w-6" />
-          </SidebarTrigger>
+          <div className="flex items-center">
+            <SidebarTrigger className="text-gray-700 p-2 hover:bg-gray-200 rounded">
+              <Menu className="h-6 w-6" />
+            </SidebarTrigger>
+          </div>
 
           {/* Logo centralizada */}
-          <div className="flex-1 flex justify-center">
+          <div className="absolute left-1/2 transform -translate-x-1/2">
             <a href="/" className="text-2xl font-bold text-gray-800">
               Portal <span className="text-primary">TVI</span>
             </a>
