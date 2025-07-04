@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
-const Sidebar = () => {
+const AppSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
@@ -62,4 +62,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default AppSidebar;

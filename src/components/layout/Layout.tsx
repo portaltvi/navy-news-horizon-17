@@ -3,7 +3,7 @@ import React from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import Header from './Header';
 import Footer from './Footer';
-import Sidebar from './Sidebar';
+import AppSidebar from './Sidebar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ const Layout = ({ children, showSidebar = true }: LayoutProps) => {
       {showSidebar ? (
         <SidebarProvider defaultOpen={false}>
           <div className="min-h-screen flex w-full">
-            <Sidebar />
+            <AppSidebar />
             <div className="flex-1 flex flex-col">
               <Header />
               <main className="flex-grow">
