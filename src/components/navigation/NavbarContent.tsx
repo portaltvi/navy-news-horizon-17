@@ -1,9 +1,6 @@
 
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
-import HeroNewsCard from '../HeroNewsCard';
-import HeroNewsCardSkeleton from '../HeroNewsCardSkeleton';
-import PostHeader from '../PostHeader';
 import SearchResultsContent from '../SearchResultsContent';
 
 interface HeroNews {
@@ -99,23 +96,68 @@ const NavbarContent = ({
               </div>
             </div>
           ) : (
-            <PostHeader postData={postData} />
+            <div className="bg-navy text-white">
+              <div className="container mx-auto px-4 py-8">
+                <div className="mb-8">
+                  <h1 className="text-3xl font-bold text-white mb-2">{postData.title}</h1>
+                  <div className="flex items-center gap-4 text-gray-300 text-sm">
+                    <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+                      {postData.category}
+                    </span>
+                    <span>Por {postData.author}</span>
+                    <span>{postData.date}</span>
+                  </div>
+                </div>
+                
+                {postData.imageUrl && (
+                  <div className="mb-8">
+                    <img 
+                      src={postData.imageUrl} 
+                      alt={postData.title}
+                      className="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+                
+                <div className="prose prose-invert max-w-none">
+                  <div dangerouslySetInnerHTML={{ __html: postData.content }} />
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </div>
     );
   }
 
-  // Show hero news or loading state
+  // Show hero news or loading state - simplified without the missing components
   return (
     <div className="bg-navy">
       <div className="container mx-auto px-4 py-8">
         {isLoading ? (
-          <HeroNewsCardSkeleton />
+          <div className="animate-pulse">
+            <div className="bg-gray-700 h-64 rounded-lg mb-4"></div>
+            <div className="bg-gray-700 h-4 rounded mb-2"></div>
+            <div className="bg-gray-700 h-4 rounded w-3/4"></div>
+          </div>
         ) : (
           heroNews && (
-            <div onClick={onHeroClick} className={onHeroClick ? 'cursor-pointer' : ''}>
-              <HeroNewsCard {...heroNews} />
+            <div onClick={onHeroClick} className={`${onHeroClick ? 'cursor-pointer' : ''} bg-navy-light rounded-lg overflow-hidden shadow-lg`}>
+              <img 
+                src={heroNews.imageUrl} 
+                alt={heroNews.title}
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+                    {heroNews.category}
+                  </span>
+                  <span className="text-gray-400 text-sm">{heroNews.date}</span>
+                </div>
+                <h1 className="text-2xl font-bold text-white mb-3">{heroNews.title}</h1>
+                <p className="text-gray-300">{heroNews.excerpt}</p>
+              </div>
             </div>
           )
         )}
