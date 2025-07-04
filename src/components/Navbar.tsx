@@ -18,6 +18,22 @@ interface PostData {
   onShare: (platform: string) => void;
 }
 
+interface SearchResult {
+  id: number;
+  title: string;
+  excerpt: string;
+  imageUrl: string;
+  category: string;
+  date: string;
+}
+
+interface SearchResults {
+  query: string;
+  results: SearchResult[];
+  isLoading: boolean;
+  onPostClick: (id: number) => void;
+}
+
 interface NavbarProps {
   heroNews?: {
     id: number;
@@ -33,6 +49,7 @@ interface NavbarProps {
   onBackClick?: () => void;
   postData?: PostData;
   errorMessage?: string;
+  searchResults?: SearchResults;
 }
 
 const Navbar = ({ 
@@ -42,7 +59,8 @@ const Navbar = ({
   showBackButton = false, 
   onBackClick, 
   postData,
-  errorMessage 
+  errorMessage,
+  searchResults
 }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -76,6 +94,7 @@ const Navbar = ({
             onBackClick={onBackClick}
             postData={postData}
             errorMessage={errorMessage}
+            searchResults={searchResults}
           />
         </div>
       </div>
