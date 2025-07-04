@@ -36,7 +36,7 @@ const Index = () => {
         <div className="container mx-auto px-4">          
           {/* News Grid */}
           {isLoading ? (
-            <section className="py-10">
+            <section className="py-4">
               <div className="mb-8">
                 <div className="flex items-center justify-between">
                   <div className="w-48 h-8 bg-white/20 rounded"></div>
@@ -50,7 +50,9 @@ const Index = () => {
               </div>
             </section>
           ) : remainingPosts.length > 0 && (
-            <NewsGrid title="Últimas Notícias" news={remainingPosts} />
+            <div className="py-4">
+              <NewsGrid title="Últimas Notícias" news={remainingPosts} />
+            </div>
           )}
         </div>
       </main>
