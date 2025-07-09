@@ -42,14 +42,34 @@ add_action('after_setup_theme', 'portal_tvi_setup');
  * Enqueue scripts e styles
  */
 function portal_tvi_scripts() {
-    // CSS principal
-    wp_enqueue_style('portal-tvi-style', get_stylesheet_uri(), array(), '1.0');
-    
-    // Tailwind CSS (via CDN para desenvolvimento)
-    wp_enqueue_style('tailwind-css', 'https://cdn.tailwindcss.com', array(), '3.3.0');
+    // Tailwind CSS via CDN (primeiro para ter prioridade)
+    wp_enqueue_style('tailwind-css', 'https://cdn.tailwindcss.com', array(), '3.4.0');
     
     // Google Fonts
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap', array(), null);
+    
+    // CSS principal (depois do Tailwind)
+    wp_enqueue_style('portal-tvi-style', get_stylesheet_uri(), array('tailwind-css'), '1.0.1');
+    
+    // Script para configurar Tailwind
+    wp_add_inline_script('jquery', "
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            'navy': {
+                                DEFAULT: '#0A1929',
+                                light: '#1A2A3A',
+                                lighter: '#2A3A4A'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ");
     
     // JavaScript principal
     wp_enqueue_script('portal-tvi-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true);

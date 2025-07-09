@@ -8,12 +8,12 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('min-h-screen flex flex-col bg-navy text-foreground antialiased'); ?>>
+<body <?php body_class('min-h-screen flex flex-col antialiased'); ?>>
 <?php wp_body_open(); ?>
 
 <header>
     <!-- Site Links Bar -->
-    <div class="bg-gray-200 py-1">
+    <div class="site-links-bar bg-gray-200 py-1">
         <div class="container mx-auto px-4">
             <div class="flex justify-center space-x-8">
                 <a href="#" class="text-xs sm:text-sm font-medium lowercase hover:opacity-80 transition-opacity" style="color: #007bff;">info</a>
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Main Header -->
-    <div class="bg-gray-100 z-40 transition-all duration-300">
+    <div class="main-header bg-gray-100 z-40 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="absolute left-1/2 transform -translate-x-1/2">
-                    <a href="<?php echo home_url(); ?>" class="text-2xl font-bold text-gray-800">
-                        Portal <span class="text-blue-600">TVI</span>
+                    <a href="<?php echo home_url(); ?>" class="logo text-2xl font-bold text-gray-800">
+                        Portal <span class="highlight text-blue-600">TVI</span>
                     </a>
                 </div>
 
@@ -60,7 +60,7 @@
     </div>
 </header>
 
-<!-- Sidebar (inicialmente oculta) -->
+<!-- Sidebar -->
 <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gray-50 transform -translate-x-full transition-transform duration-300 z-50">
     <div class="p-4">
         <button onclick="toggleSidebar()" class="mb-4 text-gray-700 hover:bg-gray-200 p-2 rounded">
@@ -85,6 +85,23 @@
 <script>
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('-translate-x-full');
+    if (sidebar.classList.contains('-translate-x-full')) {
+        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.add('open');
+    } else {
+        sidebar.classList.add('-translate-x-full');
+        sidebar.classList.remove('open');
+    }
 }
+
+// Fechar sidebar ao clicar fora
+document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = event.target.closest('button');
+    
+    if (!sidebar.contains(event.target) && !toggleButton) {
+        sidebar.classList.add('-translate-x-full');
+        sidebar.classList.remove('open');
+    }
+});
 </script>

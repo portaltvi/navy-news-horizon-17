@@ -7,78 +7,267 @@ Version: 1.0
 Text Domain: portal-tvi
 */
 
-/* Tailwind CSS será carregado via functions.php */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 210 30% 10%;
-    --foreground: 0 0% 98%;
-    --card: 210 30% 15%;
-    --card-foreground: 0 0% 98%;
-    --popover: 210 30% 15%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 210 100% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 30% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 210 30% 25%;
-    --muted-foreground: 210 5% 70%;
-    --accent: 210 30% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 30% 25%;
-    --input: 210 30% 25%;
-    --ring: 210 90% 60%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  * {
-    border-color: hsl(var(--border));
-  }
-
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Inter', sans-serif;
-  }
-  
-  .card-hover {
-    transition: all 0.3s ease;
-  }
-  
-  .card-hover:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  
-  .nav-link {
-    position: relative;
-  }
-  
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background-color: hsl(var(--primary));
-    transition: width 0.3s ease;
-  }
-  
-  .nav-link:hover::after {
-    width: 100%;
-  }
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* Cores CSS personalizadas */
+:root {
+    --navy: #0A1929;
+    --navy-light: #1A2A3A;
+    --navy-lighter: #2A3A4A;
+    --blue-primary: #3b82f6;
+    --blue-400: #60a5fa;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --white: #ffffff;
+    --green-600: #16a34a;
+    --green-700: #15803d;
+}
+
+/* Estilos base para quando o Tailwind não carregar */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header Styles */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-links-bar {
+    background-color: var(--gray-200);
+    padding: 0.25rem 0;
+}
+
+.site-links-bar .container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.site-links-bar a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.site-links-bar a:hover {
+    opacity: 0.8;
+}
+
+.main-header {
+    background-color: var(--gray-100);
+    padding: 1rem 0;
+}
+
+.main-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gray-800);
+    text-decoration: none;
+}
+
+.logo .highlight {
+    color: var(--blue-600);
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 16rem;
+    background-color: var(--gray-100);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    padding: 1rem;
+}
+
+#sidebar.open {
+    transform: translateX(0);
+}
+
+/* Cards */
+.news-card {
+    background-color: var(--navy-light);
+    border: 1px solid var(--gray-700);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card .content {
+    padding: 1rem;
+}
+
+.news-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.news-card p {
+    color: var(--gray-300);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.news-card .read-more {
+    color: var(--blue-400);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.news-card .read-more:hover {
+    text-decoration: underline;
+}
+
+/* Grid Layout */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Hero Section */
+.hero-section {
+    margin: 2rem 0;
+}
+
+.hero-card {
+    background-color: var(--navy-light);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--gray-800);
+    margin-top: 2rem;
+    padding: 3rem 0 1rem;
+}
+
+footer .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+footer h4 {
+    color: var(--white);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer p, footer li {
+    color: var(--gray-300);
+    font-size: 0.875rem;
+}
+
+footer a {
+    color: var(--gray-300);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--blue-400);
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-links-bar .container {
+        gap: 1rem;
+    }
+    
+    .site-links-bar a {
+        font-size: 0.75rem;
+    }
+}
+
+/* Utility classes fallback */
+.text-center { text-align: center; }
+.text-white { color: var(--white); }
+.text-blue-400 { color: var(--blue-400); }
+.text-gray-300 { color: var(--gray-300); }
+.bg-navy { background-color: var(--navy); }
+.bg-gray-100 { background-color: var(--gray-100); }
+.rounded { border-radius: 0.25rem; }
+.p-4 { padding: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mt-4 { margin-top: 1rem; }
+.flex { display: flex; }
+.block { display: block; }
+.hidden { display: none; }
