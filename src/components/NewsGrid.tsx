@@ -17,16 +17,18 @@ interface NewsItem {
 interface NewsGridProps {
   title: string;
   news: NewsItem[];
+  columnsClassName?: string;
 }
 
 const NewsGrid = ({
   title,
-  news
+  news,
+  columnsClassName = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
 }: NewsGridProps) => {
   return (
     <section className="py-0">
       <SectionHeader title={title} />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className={`grid ${columnsClassName} gap-6`}>
         {news.map(item => (
           <div key={item.id} onClick={item.onClick} className={item.onClick ? 'cursor-pointer' : ''}>
             <NewsCard 
