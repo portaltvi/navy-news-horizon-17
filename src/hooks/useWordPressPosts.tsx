@@ -122,7 +122,7 @@ const mockPosts: TransformedPost[] = [
 
 const fetchWordPressPosts = async (): Promise<WordPressPost[]> => {
   try {
-    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=8');
+    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=9');
     if (!response.ok) {
       throw new Error('Failed to fetch posts');
     }
