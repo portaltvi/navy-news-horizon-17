@@ -1,49 +1,21 @@
 
 <footer class="bg-gray-800 mt-10">
-    <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-                <h4 class="text-xl font-bold text-white mb-4">PORTAL<span class="text-blue-400">TVI</span></h4>
-                <p class="text-gray-300 text-sm">
-                    Sua fonte confiável para as últimas notícias, esportes e entretenimento. Fornecendo informações precisas e oportunas desde 2023.
-                </p>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4">Links Rápidos</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Sobre nós</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Entre em contato</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Política de privacidade</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Termos de uso</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4">Categorias</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Info</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Sports</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Fun</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-blue-400 transition-colors">Geek</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4">Newsletter</h4>
-                <p class="text-gray-300 text-sm mb-4">Receba as últimas notícias diretamente no seu email.</p>
-                <form class="flex flex-col space-y-2">
-                    <input type="email" placeholder="Seu email" class="px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-400 focus:outline-none">
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
-                        Inscrever-se
-                    </button>
-                </form>
-            </div>
+    <div class="container mx-auto px-4 py-6">
+        <!-- Top bar with centered links -->
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors text-sm font-medium">
+                Política de Privacidade
+            </a>
+            <span class="text-gray-600">|</span>
+            <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors text-sm font-medium">
+                Termos de Serviço
+            </a>
         </div>
         
-        <hr class="my-8 border-gray-700">
+        <hr class="my-4 border-gray-700">
         
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <!-- Bottom bar with copyright and socials -->
+        <div class="flex flex-col md:flex-row justify-between items-center py-2">
             <p class="text-gray-400 text-sm mb-4 md:mb-0">© <?php echo date('Y'); ?> - Rede TVI</p>
             
             <div class="flex space-x-4">
