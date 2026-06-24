@@ -7,58 +7,23 @@ import NewsletterSignup from '../NewsletterSignup';
 const Footer = () => {
   return (
     <footer className="bg-navy-light mt-10">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h4 className="text-xl font-bold text-white mb-4">NAVY<span className="text-primary">NEWS</span></h4>
-            <p className="text-gray-300 text-sm">
-              Your trusted source for the latest news, sports, and entertainment coverage. Delivering accurate and timely information since 2023.
-            </p>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="/about" className="text-gray-300 hover:text-primary transition-colors">Sobre nós</a>
-              </li>
-              <li>
-                <a href="/contact" className="text-gray-300 hover:text-primary transition-colors">Entre em contato</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Política de privacidade</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Termos de uso</a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Categorias</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Info</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Sports</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Fun</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-primary transition-colors">Geek</a>
-              </li>
-            </ul>
-          </div>
-          
-          <NewsletterSignup />
+      <div className="container mx-auto px-4 py-6">
+        {/* Top bar with centered links */}
+        <div className="flex justify-center space-x-6 mb-4">
+          <a href="#" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">
+            Política de Privacidade
+          </a>
+          <span className="text-gray-500">|</span>
+          <a href="#" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">
+            Termos de Serviço
+          </a>
         </div>
         
-        <Separator className="my-8 bg-navy-lighter" />
+        <Separator className="my-4 bg-navy-lighter" />
         
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">© - Rede TVI</p>
+        {/* Bottom bar with copyright and socials */}
+        <div className="flex flex-col md:flex-row justify-between items-center py-2">
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} - Rede TVI</p>
           
           <div className="flex space-x-4">
             <a href="#" className="text-gray-400 hover:text-primary transition-colors">
