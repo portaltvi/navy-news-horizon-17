@@ -25,7 +25,34 @@ const HomeTemplate = () => {
 
   const postsToDisplay = error ? mockData.data : posts;
   const heroNews = postsToDisplay?.[0];
-  const remainingPosts = postsToDisplay?.slice(1) || [];
+  const remainingPosts = (postsToDisplay?.slice(1, 9)) || [];
+
+  const playlists = [
+    {
+      id: 1001,
+      title: 'Melhores momentos da semana',
+      excerpt: 'Confira os destaques selecionados pela nossa equipe.',
+      imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',
+      category: 'Playlist',
+      date: new Date().toLocaleDateString('pt-BR'),
+    },
+    {
+      id: 1002,
+      title: 'Entrevistas exclusivas',
+      excerpt: 'Conversas com personalidades do esporte e cultura.',
+      imageUrl: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80',
+      category: 'Playlist',
+      date: new Date().toLocaleDateString('pt-BR'),
+    },
+    {
+      id: 1003,
+      title: 'Documentários em destaque',
+      excerpt: 'Histórias marcantes em produções especiais.',
+      imageUrl: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80',
+      category: 'Playlist',
+      date: new Date().toLocaleDateString('pt-BR'),
+    },
+  ];
 
   return (
     <Layout>
@@ -55,6 +82,14 @@ const HomeTemplate = () => {
             <NewsGrid title="Últimas Notícias" news={remainingPosts} />
           </div>
         )}
+
+        <div className="py-4">
+          <NewsGrid
+            title="Playlists em Destaque"
+            news={playlists}
+            columnsClassName="grid-cols-1 md:grid-cols-3"
+          />
+        </div>
       </div>
     </Layout>
   );
