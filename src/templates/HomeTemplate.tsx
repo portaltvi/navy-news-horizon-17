@@ -84,7 +84,11 @@ const HomeTemplate = () => {
         )}
 
         <div className="py-4">
-          <NewsGrid title="Playlists em Destaque" news={playlists} />
+          <NewsGrid
+            title="Playlists em Destaque"
+            news={playlists}
+            columnsClassName="grid-cols-1 md:grid-cols-3"
+          />
         </div>
       </div>
     </Layout>
