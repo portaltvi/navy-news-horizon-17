@@ -108,12 +108,21 @@ const mockPosts: TransformedPost[] = [
     imageUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070",
     category: "Fun",
     date: "15 de junho de 2025"
+  },
+  {
+    id: 9,
+    title: "Cultura e Sociedade",
+    excerpt: "Reflexões e análises sobre os temas que marcam o nosso tempo.",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageUrl: "https://images.unsplash.com/photo-1503424886307-b090341d25d1?q=80&w=2070",
+    category: "Info",
+    date: "14 de junho de 2025"
   }
 ];
 
 const fetchWordPressPosts = async (): Promise<WordPressPost[]> => {
   try {
-    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=8');
+    const response = await fetch('https://portaltvi.com/wp-json/wp/v2/posts?_embed&per_page=9');
     if (!response.ok) {
       throw new Error('Failed to fetch posts');
     }
