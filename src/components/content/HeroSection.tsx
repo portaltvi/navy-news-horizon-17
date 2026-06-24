@@ -47,11 +47,16 @@ const HeroSection = ({ heroNews, onHeroClick, isLoading }: HeroSectionProps) => 
           {/* Dark gradient to keep text legible */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
-          {/* Title + category overlay */}
+          {/* Title + category/date overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-            <span className="inline-block bg-primary text-white px-3 py-1 rounded text-xs font-semibold uppercase tracking-wide mb-4">
-              {heroNews.category}
-            </span>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="inline-block bg-primary text-white px-3 py-1 rounded text-xs font-semibold uppercase tracking-wide">
+                {heroNews.category}
+              </span>
+              <span className="text-white/80 text-xs font-medium uppercase tracking-wide drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                {heroNews.date}
+              </span>
+            </div>
 
             <h1 className="relative inline-block max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               {/* Sliding background revealed on hover */}
